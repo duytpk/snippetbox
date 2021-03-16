@@ -19,6 +19,16 @@ func showSnippet(w http.ResponseWriter, r *http.Request) {
 }
 
 func createSnippet(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		/* w.Header().Set("Cache-Control", "public, max-age=31536000")
+		w.Header().Add("Cache-Control", "public")
+		w.Header().Add("Cache-Control", "max-age=31536000")
+		w.Header().Del("Cache-Control")
+		w.Header().Get("Cache-Control") */
+		w.Header().Set("Allow", "POST")
+		http.Error(w, "Method Not Allowed", 405)
+		return
+	}
 	w.Write([]byte("Create a new snippet..."))
 }
 
