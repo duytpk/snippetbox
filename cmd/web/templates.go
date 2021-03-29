@@ -1,8 +1,8 @@
 package main
 
 import (
+	"duytpk/snippetbox/pkg/forms"
 	"duytpk/snippetbox/pkg/models"
-	"net/url"
 	"path/filepath"
 	"text/template"
 	"time"
@@ -10,8 +10,7 @@ import (
 
 type templateData struct {
 	CurrentYear int
-	FormData    url.Values
-	FormErrors  map[string]string
+	Form        *forms.Form
 	Snippet     *models.Snippet
 	Snippets    []*models.Snippet
 }
