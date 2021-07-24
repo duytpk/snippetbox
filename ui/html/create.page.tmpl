@@ -2,7 +2,7 @@
     {{define "title"}}Create a New Snippet{{end}}
     {{define "body"}}
         <form action='/snippet/create' method='POST'>
-            {{with .form}}
+            {{with .Form}}
                 <div>
                     <label>Title:</label>
                     {{with .Errors.Get "title"}}
