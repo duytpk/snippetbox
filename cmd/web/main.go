@@ -3,10 +3,10 @@ package main
 import (
 	"database/sql"
 	"flag"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"text/template"
 	"time"
 
 	"duytpk/snippetbox/pkg/models/mysql"
