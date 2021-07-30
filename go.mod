@@ -1,4 +1,4 @@
-module duytpk/snippetbox
+module duytpk/snippetbox // direct
 
 go 1.15
 
@@ -7,4 +7,5 @@ require (
 	github.com/go-sql-driver/mysql v1.5.0 // direct
 	github.com/golangcollege/sessions v1.2.0 // indirect
 	github.com/justinas/alice v1.2.0 // indirect
+	golang.org/x/crypto v0.0.0-20200317142112-1b76d66859c6 // indirect
 )
