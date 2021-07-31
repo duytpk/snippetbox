@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"duytpk/snippetbox/pkg/models"
 	"fmt"
 	"net/http"
 	"runtime/debug"
@@ -55,6 +56,10 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, name stri
 	buf.WriteTo(w)
 }
 
-func (app *application) authenticatedUser(r *http.Request) int {
-	return app.session.GetInt(r, "userID")
+func (app *application) authenticatedUser(r *http.Request) *models.User {
+	user, ok := r.Context().Value(contextKeyUser).(*models.User)
+	if !ok {
+		return nil
+	}
+	return user
 }
