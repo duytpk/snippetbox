@@ -1,33 +1,20 @@
 package main
 
 import (
-	"io/ioutil"
 	"net/http"
-	"net/http/httptest"
 	"testing"
 )
 
 func TestPing(t *testing.T) {
-	t.Parallel()
+	app := newTestApplication(t)
 
-	rr := httptest.NewRecorder()
-	r, err := http.NewRequest("GET", "/", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	ts := newTestServer(t, app.routes())
+	defer ts.Close()
 
-	ping(rr, r)
+	code, _, body := ts.get(t, "/ping")
 
-	rs := rr.Result()
-
-	if rs.StatusCode != http.StatusOK {
-		t.Errorf("want %d; got %d", http.StatusOK, rs.StatusCode)
-	}
-
-	defer rs.Body.Close()
-	body, err := ioutil.ReadAll(rs.Body)
-	if err != nil {
-		t.Fatal(err)
+	if code != http.StatusOK {
+		t.Errorf("want %d; got %d", http.StatusOK, code)
 	}
 
 	if string(body) != "OK" {
